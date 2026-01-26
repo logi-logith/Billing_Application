@@ -5,4 +5,5 @@ public enum SubscriptionStatus {
     CANCELLED,
     EXPIRED,
     PAYMENT_FAILED
+
 }

@@ -3,7 +3,6 @@ package io.github.logith.billing_application.Entity;
 import io.github.logith.billing_application.Entity.Enums.InvoiceStatus;
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 

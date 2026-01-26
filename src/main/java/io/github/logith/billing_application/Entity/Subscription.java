@@ -25,5 +25,4 @@ public class Subscription {
 
     @Enumerated(EnumType.STRING)
     private SubscriptionStatus status;
-
 }

@@ -23,8 +23,4 @@ public class User {
     private UserRole role;
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
-
-
-
-
 }

@@ -14,9 +14,13 @@ public class Plan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long  id;
+
     private String  name;
+
     private BigDecimal price;
+
     @Enumerated(EnumType.STRING)
     private BillingCycle billingCycle;
+
     private Boolean active = true;
 }
