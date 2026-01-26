@@ -1,6 +1,6 @@
 package io.github.logith.billing_application.Controller;
 
-import io.github.logith.billing_application.Entity.UserInfo;
+import io.github.logith.billing_application.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,8 +15,8 @@ public class WelcomeController {
     public void welcome(){
         System.out.println("Welcome");
     }
-    @PostMapping
-    public void createUser(){
-
-    }
+//    @PostMapping
+//    public void createUser(){
+//
+//    }
 }
