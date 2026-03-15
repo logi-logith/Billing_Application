@@ -1,8 +1,8 @@
-package io.github.logith.billing_application.Entity;
+package io.github.logith.billing_application.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import io.github.logith.billing_application.Entity.Enums.UserRole;
+import io.github.logith.billing_application.entity.enums.UserRole;
 
 import java.time.LocalDateTime;
 

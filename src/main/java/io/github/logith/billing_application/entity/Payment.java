@@ -1,6 +1,6 @@
-package io.github.logith.billing_application.Entity;
+package io.github.logith.billing_application.entity;
 
-import io.github.logith.billing_application.Entity.Enums.PaymentStatus;
+import io.github.logith.billing_application.entity.enums.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;

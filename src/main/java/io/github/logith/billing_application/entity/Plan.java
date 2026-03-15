@@ -1,11 +1,10 @@
-package io.github.logith.billing_application.Entity;
+package io.github.logith.billing_application.entity;
 
-import io.github.logith.billing_application.Entity.Enums.BillingCycle;
+import io.github.logith.billing_application.entity.enums.BillingCycle;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "plans")
