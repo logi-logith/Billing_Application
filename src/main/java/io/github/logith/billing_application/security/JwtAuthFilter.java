@@ -57,16 +57,16 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 );
 
         // 7. Set in SecurityContext — request is now "authenticated"
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        SecurityContextHolder.getContext().getAuthentication();
 
         // 8. Continue filter chain
         filterChain.doFilter(request, response);
 
-        if (!jwtService.isTokenValid(token)) {
-            System.out.println("❌ Token is INVALID");
-            filterChain.doFilter(request, response);
-            return;
-        }
+//        if (!jwtService.isTokenValid(token)) {
+//            System.out.println("❌ Token is INVALID");
+//            filterChain.doFilter(request, response);
+//            return;
+//        }
 
         System.out.println("Token valid, userId: " + jwtService.extractUserId(token));
         System.out.println("Role: " + jwtService.extractRole(token));

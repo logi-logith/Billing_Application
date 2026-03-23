@@ -1,5 +1,6 @@
 package io.github.logith.billing_application.service;
 
+import io.github.logith.billing_application.request.AdminRegisterRequest;
 import io.github.logith.billing_application.request.LoginRequest;
 import io.github.logith.billing_application.request.RegisterRequest;
 import io.github.logith.billing_application.response.AuthResponse;
@@ -8,6 +9,8 @@ import io.github.logith.billing_application.entity.enums.UserRole;
 import io.github.logith.billing_application.repository.UserRepository;
 import io.github.logith.billing_application.security.JwtService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,8 @@ public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    @Value("${admin.secret-key}")
+    private String adminSecretKey;
 
     public AuthResponse register(RegisterRequest request) {
         // 1. Check duplicate email
@@ -54,5 +59,36 @@ public class AuthService {
         // 3. Generate and return token
         String token = jwtService.generateToken(user.getId(), user.getRole().name());
         return new AuthResponse(token, user.getName(), user.getRole().name());
+    }
+
+    public AuthResponse registerAdmin(AdminRegisterRequest request) {
+
+        System.out.println("Expected key: " + adminSecretKey);
+        System.out.println("Received key: " + request.adminSecretKey());
+        System.out.println("Match: " + adminSecretKey.equals(request.adminSecretKey()));
+
+        // 1. Validate secret key
+        if (!adminSecretKey.equals(request.adminSecretKey())) {
+            throw new AccessDeniedException("Invalid admin secret key");
+        }
+
+        // 2. Check duplicate email
+        if (userRepository.existsByEmail(request.emailId())) {
+            throw new IllegalArgumentException("Email already registered");
+        }
+
+        // 3. Build admin user
+        User user = new User();
+        user.setName(request.name());
+        user.setEmail(request.emailId());
+        user.setPassword(passwordEncoder.encode(request.password()));
+        user.setRole(UserRole.ROLE_ADMIN);        // ← ADMIN role
+
+        // 4. Save
+        User saved = userRepository.save(user);
+
+        // 5. Generate token
+        String token = jwtService.generateToken(saved.getId(), saved.getRole().name());
+        return new AuthResponse(token, saved.getName(), saved.getRole().name());
     }
 }

@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -30,8 +31,12 @@ public class SecurityConfig {
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // no sessions — JWT only
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()    // public endpoints
-                        .requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(
+                                AntPathRequestMatcher.antMatcher("/api/**"),
+                                AntPathRequestMatcher.antMatcher("/error"),        // ← add this
+                                AntPathRequestMatcher.antMatcher("/error/**")
+                        ).permitAll()    // public endpoints
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/api/admin/**")).hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated()                   // everything else needs token
                 )
                 .addFilterBefore(jwtAuthFilter,                    // run JWT filter first
