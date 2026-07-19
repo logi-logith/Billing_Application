@@ -1,0 +1,29 @@
+### Backend (Java / Maven / IntelliJ) ###
+backend/target/
+backend/.mvn/
+backend/*.iml
+backend/.idea/
+*.class
+*.log
+HELP.md
+
+### IntelliJ (in case IDE files sit at root too) ###
+.idea/
+*.iml
+out/
+
+### Frontend (Node / Vite) ###
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+frontend/.env.production
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Env / secrets (never commit these) ###
+**/application-local.yml
+**/application-secrets.yml
+*.env

@@ -1,0 +1,42 @@
+:root {
+  /* Color — "ledger" palette: parchment ground, ink text, teal for settled/action,
+     amber for pending, rust for overdue. Deliberately not the generic
+     cream+terracotta or dark+neon combos — this is a financial-ledger idea. */
+  --color-bg: #F6F4EF;
+  --color-surface: #FFFFFF;
+  --color-ink: #1B2340;
+  --color-ink-soft: #565F7D;
+  --color-line: #E2DFD5;
+  --color-teal: #1B6B63;
+  --color-teal-soft: #E4F0EE;
+  --color-amber: #B5822C;
+  --color-amber-soft: #F7EEDD;
+  --color-rust: #A8402F;
+  --color-rust-soft: #F6E5E1;
+
+  /* Type */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.25rem;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+
+  --sidebar-width: 240px;
+}
